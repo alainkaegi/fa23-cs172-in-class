@@ -14,7 +14,7 @@ def init(size, numMines):
     """Initialize the size x size grid with num_mines mines.
     
     Each position of the grid records the presence of a mine and
-    whether the user has cliked on that position in the form a
+    whether the user has clicked on that position in the form a
     tuple."""
     minefield = stdarray.create2D(size, size, (False, False))
     while numMines > 0:
