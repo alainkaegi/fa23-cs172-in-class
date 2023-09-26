@@ -10,6 +10,8 @@ import random
 import stddraw
 import stdarray
 
+import minesweeperlib
+
 def init(size, numMines):
     """Initialize the size x size grid with num_mines mines.
     
@@ -38,6 +40,14 @@ def draw(minefield):
                 stddraw.setPenColor(stddraw.BOOK_LIGHT_BLUE)
                 stddraw.filledSquare(x*side + half, y*side + half, half)
                 stddraw.setPenColor(stddraw.BLACK)
+            elif m:
+                stddraw.setPenColor(stddraw.RED)
+                stddraw.filledCircle(x*side + half, y*side + half, half/0.5*0.3)
+                stddraw.setPenColor(stddraw.BLACK)
+            else:
+                count = minesweeperlib.count_neighboring_mines(minefield, x, y)
+                if count != 0:
+                    stddraw.text(x*side + half, y*side + half, str(count))
             stddraw.square(x*side + half, y*side + half, half)
     stddraw.show(0)
 
