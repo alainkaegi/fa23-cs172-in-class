@@ -8,7 +8,6 @@ Two parameters control its behavior:
 
 import random
 import stddraw
-import stdarray
 
 import minesweeperlib
 
@@ -18,7 +17,7 @@ def init(size, numMines):
     Each position of the grid records the presence of a mine and
     whether the user has clicked on that position in the form a
     tuple."""
-    minefield = stdarray.create2D(size, size, (False, False))
+    minefield = [[(False, False) for j in range(size)] for i in range(size)]
     while numMines > 0:
         x = random.randrange(0, size)
         y = random.randrange(0, size)
