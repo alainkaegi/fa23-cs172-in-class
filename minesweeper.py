@@ -9,8 +9,6 @@ Two parameters control its behavior:
 import random
 import stddraw
 
-import minesweeperlib
-
 SIZE = 10
 NUM_MINES = 10
 
@@ -30,6 +28,27 @@ def init(size, numMines):
             numMines -= 1
     return minefield
 
+def count_neighboring_mines(minefield, x, y):
+    """Count the number of the neiboring mines.
+
+    Count the number of mines in the eight positions immediately near to
+    coordinate (x, y).  This function assumes that there is no mine at
+    coordinate (x, y).
+    """
+    size = len(minefield)
+    count = 0
+    xx = x - 1
+    while xx < x + 2:
+        yy = y - 1
+        while yy < y + 2:
+            if (xx >= 0 and xx < size and yy >= 0 and yy < size):
+                (m, _) = minefield[xx][yy]
+                if m:
+                    count += 1
+            yy += 1
+        xx += 1
+    return count
+
 def draw(minefield):
     stddraw.clear()
     size = len(minefield)
@@ -47,7 +66,7 @@ def draw(minefield):
                 stddraw.filledCircle(x*side + half, y*side + half, half/0.5*0.3)
                 stddraw.setPenColor(stddraw.BLACK)
             else:
-                count = minesweeperlib.count_neighboring_mines(minefield, x, y)
+                count = count_neighboring_mines(minefield, x, y)
                 if count != 0:
                     stddraw.text(x*side + half, y*side + half, str(count))
             stddraw.square(x*side + half, y*side + half, half)
