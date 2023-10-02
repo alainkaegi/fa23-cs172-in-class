@@ -11,6 +11,9 @@ import stddraw
 
 import minesweeperlib
 
+SIZE = 10
+NUM_MINES = 10
+
 def init(size, numMines):
     """Initialize the size x size grid with num_mines mines.
     
@@ -79,15 +82,15 @@ def handleUser(minefield):
 def won(minefield):
     return False
 
-SIZE = 10
-NUM_MINES = 10
-
-print('Welcome to minesweeper')
-minefield = init(SIZE, NUM_MINES)
-draw(minefield)
-while True:
-    handleUser(minefield)
+def main():
+    print('Welcome to minesweeper')
+    minefield = init(SIZE, NUM_MINES)
     draw(minefield)
-    if (won(minefield)):
-        print('You won!')
-        stddraw.show()
+    while True:
+        handleUser(minefield)
+        draw(minefield)
+        if (won(minefield)):
+            print('You won!')
+            stddraw.show()
+
+if __name__ == '__main__': main()
