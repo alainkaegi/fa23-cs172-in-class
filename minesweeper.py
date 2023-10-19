@@ -73,8 +73,20 @@ def draw(minefield):
     stddraw.show(0)
 
 def reveal(minefield, x, y):
-    (m, _) = minefield[x][y]
+    (m, r) = minefield[x][y]
+    if r: return
     minefield[x][y] = (m, True)
+    count = count_neighboring_mines(minefield, x, y)
+    size = len(minefield)
+    if count == 0:
+        xx = x - 1
+        while xx < x + 2:
+            yy = y - 1
+            while yy < y + 2:
+                if (xx >= 0 and xx < size and yy >= 0 and yy < size):
+                    reveal(minefield, xx, yy)
+                yy += 1
+            xx += 1
 
 def handleUser(minefield):
     size = len(minefield)
