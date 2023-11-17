@@ -1,7 +1,7 @@
 class Vector:
 
     def __init__(self, a):
-        self._coords = a[:]
+        self._coords = a[:]    # defensive copy
 
     def __str__(self):
         s = '['
