@@ -14,6 +14,12 @@ class LinkedQueue:
         else:
             self._back.next = self.Node(item)
             self._back = self._back.next
+
+    def dequeue(self):
+        """Remove and return the oldest item in the queue in O(1) steps."""
+        item = self._front.item
+        self._front = self._front.next
+        return item
     
     class Node:
         def __init__(self, item):
